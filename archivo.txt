@@ -1,0 +1,20 @@
+def contar_letras_y_espacios(archivo_entrada):
+    letras = 0
+    espacios = 0
+    with open(archivo_entrada, 'r') as archivo:
+        texto = archivo.read()
+        letras = sum(1 for caracter in texto if caracter.isalpha())
+        espacios = sum(1 for caracter in texto if caracter.isspace())
+    return letras, espacios
+
+def generar_resumen(archivo_entrada, archivo_salida):
+    letras, espacios = contar_letras_y_espacios(archivo_entrada)
+    with open(archivo_salida, 'w') as archivo:
+        archivo.write(f"El archivo {archivo_entrada} contiene:\n")
+        archivo.write(f"- {letras} letras\n")
+        archivo.write(f"- {espacios} espacios\n")
+
+archivo_entrada = 'archivo.txt'
+archivo_salida = 'resumen.txt'
+
+generar_resumen(archivo_entrada, archivo_salida)
